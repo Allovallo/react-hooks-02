@@ -1,4 +1,10 @@
 import './App.css';
+import { Route, Routes } from 'react-router';
+import OldSignupForm from './components/SignupForm/SignupForm';
+import OldClock from './components/Clock/Clock';
+import OldColorPicker from './components/ColorPicker/ColorPicker';
+import OldCounter from './components/Counter/Counter';
+import PokemonView from './views/PokemonView';
 
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -17,8 +23,19 @@ const containerStyles = {
   paddingRight: 15,
 };
 
-function App() {
-  return <div>App</div>;
+export default function App() {
+  return (
+    <div style={containerStyles}>
+      <Routes>
+        <Route path="/signup" element={<OldSignupForm />}></Route>
+        <Route path="/clock" element={<OldClock />}></Route>
+        <Route
+          path="/colorpicker"
+          element={<OldColorPicker options={colorPickerOptions} />}
+        ></Route>
+        <Route path="/counter" element={<OldCounter />}></Route>
+        <Route path="/pokemon" element={<PokemonView />}></Route>
+      </Routes>
+    </div>
+  );
 }
-
-export default App;
