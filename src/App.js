@@ -1,10 +1,12 @@
-import './App.css';
 import { Route, Routes } from 'react-router';
+import Appbar from './components/AppBar/AppBar';
 import OldSignupForm from './components/SignupForm/SignupForm';
-import OldClock from './components/Clock/Clock';
 import OldColorPicker from './components/ColorPicker/ColorPicker';
 import OldCounter from './components/Counter/Counter';
+import OldClock from './components/Clock/Clock';
 import PokemonView from './views/PokemonView';
+import SkipEffectOnFirstRender from './components/SkipEffectOnFirstRender';
+import Friends from './components/Friends';
 
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -26,15 +28,19 @@ const containerStyles = {
 export default function App() {
   return (
     <div style={containerStyles}>
+      <Appbar />
+
       <Routes>
         <Route path="/signup" element={<OldSignupForm />}></Route>
-        <Route path="/clock" element={<OldClock />}></Route>
         <Route
           path="/colorpicker"
           element={<OldColorPicker options={colorPickerOptions} />}
         ></Route>
         <Route path="/counter" element={<OldCounter />}></Route>
+        <Route path="/clock" element={<OldClock />}></Route>
         <Route path="/pokemon" element={<PokemonView />}></Route>
+        <Route path="/skip-first-render" element={<SkipEffectOnFirstRender />}></Route>
+        <Route path="/notes" element={<Friends />}></Route>
       </Routes>
     </div>
   );
