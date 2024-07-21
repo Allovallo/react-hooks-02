@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router';
 import Appbar from './components/AppBar/AppBar';
-import OldSignupForm from './components/SignupForm/SignupForm';
+import SignupForm from './components/SignupForm/SignupForm';
 import OldColorPicker from './components/ColorPicker/ColorPicker';
 import OldCounter from './components/Counter/Counter';
 import OldClock from './components/Clock/Clock';
@@ -31,7 +31,7 @@ export default function App() {
       <Appbar />
 
       <Routes>
-        <Route path="/signup" element={<OldSignupForm />}></Route>
+        <Route path="/signup" element={<SignupForm />}></Route>
         <Route
           path="/colorpicker"
           element={<OldColorPicker options={colorPickerOptions} />}
