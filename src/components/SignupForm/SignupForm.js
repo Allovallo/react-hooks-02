@@ -1,9 +1,14 @@
-import { useState } from 'react';
 import styles from './SignupForm.module.css';
+import { useState, useEffect } from 'react';
 
 export default function SignupForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(() => {
+    return JSON.parse(window.localStorage.getItem('email' ?? ''));
+  });
+
+  const [password, setPassword] = useState(() => {
+    return JSON.parse(window.localStorage.getItem('password' ?? ''));
+  });
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -21,6 +26,14 @@ export default function SignupForm() {
         return;
     }
   };
+
+  useEffect(() => {
+    window.localStorage.setItem('email', JSON.stringify(email));
+  }, [email]);
+
+  useEffect(() => {
+    window.localStorage.setItem('password', JSON.stringify(password));
+  }, [password]);
 
   return (
     <form className={styles.form} autoComplete="off">
