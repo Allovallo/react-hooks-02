@@ -3,7 +3,7 @@ import Appbar from './components/AppBar/AppBar';
 import SignupForm from './components/SignupForm/SignupForm';
 import ColorPicker from './components/ColorPicker/ColorPicker';
 import Counter from './components/Counter/Counter';
-import OldClock from './components/Clock/Clock';
+import Clock from './components/Clock/Clock';
 import PokemonView from './views/PokemonView';
 import SkipEffectOnFirstRender from './components/SkipEffectOnFirstRender';
 import Friends from './components/Friends';
@@ -34,7 +34,7 @@ export default function App() {
         <Route path="/signup" element={<SignupForm />}></Route>
         <Route path="/colorpicker" element={<ColorPicker options={colorPickerOptions} />}></Route>
         <Route path="/counter" element={<Counter />}></Route>
-        <Route path="/clock" element={<OldClock />}></Route>
+        <Route path="/clock" element={<Clock />}></Route>
         <Route path="/pokemon" element={<PokemonView />}></Route>
         <Route path="/skip-first-render" element={<SkipEffectOnFirstRender />}></Route>
         <Route path="/notes" element={<Friends />}></Route>
