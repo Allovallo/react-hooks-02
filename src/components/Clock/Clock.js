@@ -10,6 +10,11 @@ export default function Clock() {
       console.log('Це інтервал кожні 1000ms ' + Date.now());
       setTime(new Date());
     }, 1000);
+
+    return () => {
+      console.log('Це функція очищення перед наступним визовом useEffect');
+      stop();
+    };
   }, []);
 
   const stop = () => {
