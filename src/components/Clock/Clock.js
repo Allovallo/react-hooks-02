@@ -1,28 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styles from './Clock.module.css';
 
 export default function Clock() {
   const [time, setTime] = useState(() => new Date());
-
-  let intervalId = null;
+  const intervalId = useRef(null);
 
   useEffect(() => {
-    intervalId = setInterval(() => {
+    intervalId.current = setInterval(() => {
       console.log('Це інтервал кожні 1000ms ' + Date.now());
       setTime(new Date());
     }, 1000);
   }, []);
 
   const stop = () => {
-    clearInterval(intervalId);
+    clearInterval(intervalId.current);
   };
 
+  console.log(intervalId);
+  console.log(intervalId.current);
   return (
     <div className={styles.container}>
-      <p className={styles.clockface}>
-        Поточний час:
-        {time.toLocaleTimeString()}
-      </p>
+      <p className={styles.clockface}>Поточний час: {time.toLocaleTimeString()}</p>
       <button type="button" onClick={stop}>
         Зупинити
       </button>
