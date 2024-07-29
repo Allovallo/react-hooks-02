@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import PokemonDataView from './DataView';
 import PokemonErrorView from './ErrorView';
 import PokemonPendingView from './PendingView';
@@ -11,12 +11,10 @@ const Status = {
   REJECTED: 'rejected',
 };
 
-export default class PokemonInfo extends Component {
-  state = {
-    pokemon: null,
-    error: null,
-    status: Status.IDLE,
-  };
+export default function PokemonInfo({pokemonName}) {
+  const [pokemon, setPokemon] = useState(null);
+  const [error, setError] = useState(null);
+  const [status, setStatus] = useState()
 
   componentDidUpdate(prevProps, prevState) {
     const prevName = prevProps.pokemonName;

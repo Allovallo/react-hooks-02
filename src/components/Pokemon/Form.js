@@ -28,7 +28,7 @@ export default function PokemonForm({ onSubmit }) {
       <input type="text" name="pokemonName" value={pokemonName} onChange={handleNameChange} />
       <button type="submit">
         <ImSearch style={{ marginRight: 8 }} />
-        Знайти
+        Найти
       </button>
     </form>
   );
