@@ -1,35 +1,83 @@
+import { useReducer } from 'react';
 import styles from './Counter.module.css';
-import { useState, useEffect } from 'react';
+
+function countReducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { ...state, count: state.count + action.payload };
+
+    case 'decrement':
+      return { ...state, count: state.count - action.payload };
+
+    default: {
+      throw new Error(`Unsupportable action type ${action.type}`);
+    }
+  }
+}
+
+function init(initialState) {
+  return {
+    ...initialState,
+    count: initialState.count + 100,
+  };
+}
 
 export default function Counter() {
-  const [counterA, setCounterA] = useState(0);
-  const [counterB, setCounterB] = useState(0);
-
-  const handleCounterAIncrement = () => {
-    setCounterA(prevState => prevState + 1);
-  };
-
-  const handleCounterBIncrement = () => {
-    setCounterB(prevState => prevState + 1);
-  };
-
-  useEffect(() => {
-    const totalClicks = counterA + counterB;
-    document.title = `Всього клікнули ${totalClicks} разів`;
-  }, [counterA, counterB]);
+  const [state, dispatch] = useReducer(countReducer, { count: 0 }, init);
 
   return (
-    <>
-      <button className={styles.btn} type="button" onClick={handleCounterAIncrement}>
-        Кликнули counterA {counterA} раз
+    <div className={styles.container}>
+      <p className={styles.value}>{state.count}</p>
+      <button
+        className={styles.btn}
+        type="button"
+        onClick={() => dispatch({ type: 'increment', payload: 1 })}
+      >
+        Збільшити
       </button>
-
-      <button className={styles.btn} type="button" onClick={handleCounterBIncrement}>
-        Кликнули counterB {counterB} раз
+      <button
+        className={styles.btn}
+        type="button"
+        onClick={() => dispatch({ type: 'decrement', payload: 1 })}
+      >
+        Зменшити
       </button>
-    </>
+    </div>
   );
 }
+
+// import styles from './Counter.module.css';
+// import { useState, useEffect } from 'react';
+
+// export default function Counter() {
+//   const [counterA, setCounterA] = useState(0);
+//   const [counterB, setCounterB] = useState(0);
+
+//   const handleCounterAIncrement = () => {
+//     setCounterA(prevState => prevState + 1);
+//   };
+
+//   const handleCounterBIncrement = () => {
+//     setCounterB(prevState => prevState + 1);
+//   };
+
+//   useEffect(() => {
+//     const totalClicks = counterA + counterB;
+//     document.title = `Всього клікнули ${totalClicks} разів`;
+//   }, [counterA, counterB]);
+
+//   return (
+//     <>
+//       <button className={styles.btn} type="button" onClick={handleCounterAIncrement}>
+//         Кликнули counterA {counterA} раз
+//       </button>
+
+//       <button className={styles.btn} type="button" onClick={handleCounterBIncrement}>
+//         Кликнули counterB {counterB} раз
+//       </button>
+//     </>
+//   );
+// }
 
 // export default class OldCounter extends Component {
 //   state = {
