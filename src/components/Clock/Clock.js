@@ -21,8 +21,8 @@ export default function Clock() {
     clearInterval(intervalId.current);
   };
 
-  console.log(intervalId);
-  console.log(intervalId.current);
+  // console.log(intervalId);
+  // console.log(intervalId.current);
   return (
     <div className={styles.container}>
       <p className={styles.clockface}>Поточний час: {time.toLocaleTimeString()}</p>
